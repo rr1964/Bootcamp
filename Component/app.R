@@ -86,26 +86,6 @@ ui <- fluidPage(
         column(3, 
                textInput("text", h3("Text input"), 
                          value = "Enter text..."))   
-    ),
-    
-    fluidRow(
-        
-        column(3,
-                uiOutput(outputId = "guitar")
-              ),
-        
-        column(3,
-               img(src = "larry.jpg", height = 200, width = 133.5, hspace = 45),
-               )
-        
-        #column(3, 
-         #      ),
-        
-        
-        #column(3, 
-         #      )   
-        
-        
     )
     
 )
@@ -113,10 +93,6 @@ ui <- fluidPage(
 # Define server logic ----
 server <- function(input, output) {
     
-    output$guitar = renderUI({
-        img(src = "JazzBass.jpg",  height = "100px", width = "100px")
-        
-    })
     
 }
 

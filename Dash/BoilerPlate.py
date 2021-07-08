@@ -8,9 +8,6 @@ import dash_html_components as html
 
 app = dash.Dash()
 
-# assume you have a "long-form" data frame
-# see https://plotly.com/python/px-arguments/ for more options
-
 
 app.layout = html.Div(children=[
     html.H1(children='Hello Dash'),

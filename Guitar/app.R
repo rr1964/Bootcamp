@@ -1,0 +1,129 @@
+#
+# This is a Shiny web application. You can run the application by clicking
+# the 'Run App' button above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
+
+## See https://shiny.rstudio.com/tutorial
+## This is derieved from there. 
+
+library(shiny)
+
+# Define UI ----
+ui <- fluidPage(
+    titlePanel("Basic Panel Components"),
+    
+    fluidRow(
+        
+        ##We will come back later and add actions for the buttons. 
+        column(width = 3,
+               h3("Buttons"),
+               actionButton("action", "Action"),
+               br(),
+               br(), 
+               submitButton("Submit")),
+        
+        column(3,
+               h3("Single checkbox"),
+               checkboxInput("checkbox", "Choice A", value = TRUE)),
+        
+        column(3, 
+               checkboxGroupInput("checkGroup", 
+                                  h3("Checkbox group"), 
+                                  choices = list("Choice 1" = 1, 
+                                                 "Choice 2" = 2, 
+                                                 "Choice 3" = 3),
+                                  selected = 1)),
+        
+        column(3, 
+               dateInput("date", 
+                         h3("Date input"), 
+                         value = "2014-01-01"))   
+    ),
+    
+    fluidRow(
+        
+        column(3,
+               dateRangeInput("dates", h3("Date range"))),
+        
+        column(3,
+               fileInput("file", h3("File input"))),
+        
+        column(3, 
+               h3("Help text"),
+               helpText("Note: help text isn't a true widget,", 
+                        "but it provides an easy way to add text to",
+                        "accompany other widgets.")),
+        
+        column(3, 
+               numericInput("num", 
+                            h3("Numeric input"), 
+                            value = 1))   
+    ),
+    
+    fluidRow(
+        
+        column(3,
+               radioButtons("radio", h3("Radio buttons"),
+                            choices = list("Choice 1" = "c1", "Choice 2" = "c2",
+                                           "Choice 3" = "c3"),selected = "c1")),
+        
+        column(3,
+               selectInput("select", h3("Select box"), 
+                           choices = list("Choice 1" = 1, "Choice 2" = 2,
+                                          "Choice 3" = 3), selected = 1)),
+        
+        column(3, 
+               sliderInput("slider1", h3("Sliders"),
+                           min = 0, max = 100, value = 50),
+               sliderInput("slider2", "",
+                           min = 0, max = 100, value = c(25, 75))
+        ),
+        
+        column(3, 
+               textInput("text", h3("Text input"), 
+                         value = "Enter text..."))   
+    ),
+    
+    fluidRow(
+        
+        column(3,
+                uiOutput(outputId = "guitar")
+              ),
+        
+        column(3,
+                img(src = "larry.jpg", height = 200, width = 133.5, hspace = 45),
+               )
+        
+        
+        #column(3, 
+         #      )   
+        
+        
+    )
+    
+)
+
+# Define server logic ----
+server <- function(input, output) {
+    
+   
+        output$guitar = renderUI({
+            
+            switch(input$radio,
+                   c1 = img(src = "JazzBass.jpg",  height = "300px", width = "450px"),
+                   c2 = img(src = "LesPaulCustom61.jpg",  height = "300px", width = "450px"),
+                   c3 = img(src = "Rickenbacker 36012.jpg",  height = "300px", width = "450px"))
+            
+
+        })
+        
+        
+    
+}
+
+# Run the app ----
+shinyApp(ui = ui, server = server)

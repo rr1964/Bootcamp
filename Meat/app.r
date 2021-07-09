@@ -1,6 +1,6 @@
-#Access this app at
+#Access an app like this at
 ##########################################
-# https://rr1964.shinyapps.io/dating/
+# https://rr1964.shinyapps.io
 ##########################################
 
 library(shiny)
